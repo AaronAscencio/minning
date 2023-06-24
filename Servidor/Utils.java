@@ -133,11 +133,12 @@ public class Utils {
     public static List<List<String>> getIntervals(String[] allFiles, int number) {
         List<List<String>> intervals = new ArrayList<>();
         int index = 0;
+        int filesPerInterval = allFiles.length / number;
 
-        while (index < allFiles.length) {
-            List<String> interval = Arrays.asList(Arrays.copyOfRange(allFiles, index, Math.min(index + number, allFiles.length)));
+        for (int i = 0; i < number; i++) {
+            List<String> interval = Arrays.asList(Arrays.copyOfRange(allFiles, index, index + filesPerInterval));
             intervals.add(interval);
-            index += number;
+            index += filesPerInterval;
         }
 
         return intervals;
